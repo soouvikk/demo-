@@ -1,0 +1,6 @@
+{
+  "name": "GraminMart - Grocery Showcase & Sales Lead Engine",
+  "description": "Premium grocery product showcase and sales lead distribution platform with PIN-to-salesman routing and multi-tier commission tracking.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
