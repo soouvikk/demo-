@@ -48,31 +48,31 @@ export const Navbar: React.FC = () => {
   };
 
   return (
-    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-2xs transition-all duration-200">
+    <header className="sticky top-0 z-40 bg-[#FAF7F2]/95 backdrop-blur-md border-b border-[#E8E0D5] shadow-2xs transition-all duration-200">
       {/* Top Banner: Real Business Clarification */}
-      <div className="bg-slate-950 text-slate-300 text-xs py-2 px-4 border-b border-slate-800">
+      <div className="bg-[#2A331E] text-[#FAF7F2] text-xs py-2 px-4 border-b border-[#3C472C]">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
           <div className="flex items-center gap-2 text-xs">
-            <span className="font-mono bg-emerald-950 text-emerald-300 px-2 py-0.5 rounded-full font-semibold tracking-wider text-[10px] uppercase border border-emerald-800">
+            <span className="font-mono bg-[#3C472C] text-[#EDF2E8] px-2 py-0.5 rounded-full font-semibold tracking-wider text-[10px] uppercase border border-[#7D8D64]/50">
               OFFICIAL B2B SHOWCASE
             </span>
-            <span className="text-slate-300 font-medium">
+            <span className="text-[#FAF7F2]/90 font-medium">
               Regional FMCG Wholesale Showcase • Offline Kirana Fulfillment & Spot Invoicing
             </span>
           </div>
 
           <div className="flex items-center gap-5 text-xs font-mono">
-            <span className="hidden md:inline-flex items-center gap-1.5 text-slate-400">
-              <PackageCheck className="w-3.5 h-3.5 text-emerald-400" />
+            <span className="hidden md:inline-flex items-center gap-1.5 text-[#E8E0D5]">
+              <PackageCheck className="w-3.5 h-3.5 text-[#7D8D64]" />
               Zero Online Payment Risk
             </span>
             <a
               href="https://wa.me/917365980930"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-emerald-400 hover:text-emerald-300 font-semibold transition-colors"
+              className="inline-flex items-center gap-1.5 text-[#A3B489] hover:text-[#C8D4B8] font-semibold transition-colors"
             >
-              <MessageCircle className="w-3.5 h-3.5 text-emerald-400" />
+              <MessageCircle className="w-3.5 h-3.5 text-[#7D8D64]" />
               WhatsApp Helpdesk: <strong className="text-white">+91 73659 80930</strong>
             </a>
           </div>
@@ -87,19 +87,19 @@ export const Navbar: React.FC = () => {
             onClick={() => handleNavClick('home')}
             className="flex items-center gap-3 cursor-pointer group select-none"
           >
-            <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-emerald-600 to-teal-700 flex items-center justify-center text-white shadow-md shadow-emerald-700/20 group-hover:scale-105 transition-all duration-200">
+            <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-[#7D8D64] to-[#4A5638] flex items-center justify-center text-white shadow-md shadow-[#7D8D64]/20 group-hover:scale-105 transition-all duration-200">
               <Store className="w-6 h-6 stroke-[2.2]" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="font-display text-2xl font-extrabold tracking-tight text-slate-900">
-                  Gramin<span className="text-emerald-600">Mart</span>
+                <span className="font-display text-2xl font-extrabold tracking-tight text-[#20261D]">
+                  Gramin<span className="text-[#7D8D64]">Mart</span>
                 </span>
-                <span className="font-mono text-[9px] uppercase tracking-wider font-bold bg-emerald-50 text-emerald-800 border border-emerald-200 px-2 py-0.5 rounded-full">
+                <span className="font-mono text-[9px] uppercase tracking-wider font-bold bg-[#EDF2E8] text-[#3C472C] border border-[#C8D4B8] px-2 py-0.5 rounded-full">
                   WHOLESALE
                 </span>
               </div>
-              <p className="text-xs text-slate-500 font-medium tracking-tight">
+              <p className="text-xs text-[#646A5E] font-medium tracking-tight">
                 Regional Kirana & FMCG Distribution Network
               </p>
             </div>
@@ -115,17 +115,17 @@ export const Navbar: React.FC = () => {
                   onClick={() => handleNavClick(item.page)}
                   className={`px-4 py-2 rounded-xl text-xs font-semibold tracking-wide transition-all duration-150 flex items-center gap-2 ${
                     isActive
-                      ? 'bg-emerald-50 text-emerald-800 font-bold border border-emerald-200/80 shadow-2xs'
-                      : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50 border border-transparent'
+                      ? 'bg-[#EDF2E8] text-[#2A331E] font-bold border border-[#C8D4B8] shadow-2xs'
+                      : 'text-[#646A5E] hover:text-[#20261D] hover:bg-[#F3EDE4] border border-transparent'
                   }`}
                 >
-                  <span className={isActive ? 'text-emerald-700' : 'text-slate-500'}>
+                  <span className={isActive ? 'text-[#7D8D64]' : 'text-[#646A5E]'}>
                     {item.icon}
                   </span>
                   <span>{item.label}</span>
                   {item.badge && (
                     <span className={`text-[10px] font-mono px-1.5 py-0.2 rounded-full font-bold ${
-                      isActive ? 'bg-emerald-600 text-white' : 'bg-slate-200 text-slate-700'
+                      isActive ? 'bg-[#7D8D64] text-white' : 'bg-[#E8E0D5] text-[#3C472C]'
                     }`}>
                       {item.badge}
                     </span>
@@ -141,13 +141,13 @@ export const Navbar: React.FC = () => {
               onClick={openAdmin}
               className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold border transition-all duration-150 ${
                 mode === 'admin'
-                  ? 'bg-slate-900 text-white border-slate-900 shadow-sm'
-                  : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300 hover:bg-slate-50'
+                  ? 'bg-[#2A331E] text-white border-[#2A331E] shadow-sm'
+                  : 'bg-white text-[#20261D] border-[#E8E0D5] hover:border-[#7D8D64] hover:bg-[#F3EDE4]'
               }`}
             >
-              <Layers className="w-3.5 h-3.5 text-emerald-600" />
+              <Layers className="w-3.5 h-3.5 text-[#7D8D64]" />
               <span>Staff / Salesman Desk</span>
-              <span className="text-[10px] uppercase px-1.5 py-0.5 rounded-md bg-slate-100 text-slate-600 font-mono">
+              <span className="text-[10px] uppercase px-1.5 py-0.5 rounded-md bg-[#F0F1EF] text-[#3C472C] font-mono font-semibold">
                 {activeRole === 'SUPER_ADMIN' ? 'Admin' : 'Junior'}
               </span>
             </button>
@@ -156,7 +156,7 @@ export const Navbar: React.FC = () => {
               href="https://wa.me/917365980930"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs rounded-xl shadow-md shadow-emerald-600/20 active:scale-95 transition-all duration-150"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-[#7D8D64] hover:bg-[#6E7D56] text-white font-semibold text-xs rounded-xl shadow-md shadow-[#7D8D64]/25 active:scale-95 transition-all duration-150"
             >
               <MessageCircle className="w-3.5 h-3.5" />
               <span>Direct WhatsApp</span>

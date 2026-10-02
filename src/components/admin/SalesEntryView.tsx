@@ -5,12 +5,14 @@ import { calculateCommission, evaluateSalesmanLevel } from '../../services/commi
 import { 
   Receipt, 
   CheckCircle2, 
-  AlertTriangle, 
+  AlertCircle, 
+  MapPin, 
   User, 
   Package, 
   DollarSign, 
-  ArrowRight,
-  Sparkles
+  Percent,
+  Sparkles,
+  ShieldCheck
 } from 'lucide-react';
 
 export const SalesEntryView: React.FC = () => {
@@ -57,7 +59,7 @@ export const SalesEntryView: React.FC = () => {
       salesmanName: activeSalesman.name,
       productId: selectedProduct.id,
       productName: selectedProduct.name,
-      productPrice: selectedProduct.price,
+      productPrice: productPrice,
       quantity,
       saleAmount: calculation.saleAmount,
       applicableJuniorRate: applicableRate,
@@ -79,24 +81,24 @@ export const SalesEntryView: React.FC = () => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 text-[#20261D]">
       {/* Header */}
-      <div className="border-b border-slate-200 pb-5">
-        <div className="flex items-center gap-2 text-xs font-bold text-emerald-700 uppercase tracking-wider font-mono">
+      <div className="border-b border-[#E8E0D5] pb-5">
+        <div className="flex items-center gap-2 text-xs font-bold text-[#7D8D64] uppercase tracking-wider font-mono">
           <Receipt className="w-4 h-4" />
           <span>Rule 1, 4 & 5 — Offline Sales Entry & Exact Commissioning</span>
         </div>
-        <h2 className="text-2xl font-extrabold text-slate-900 mt-1 font-display">
+        <h2 className="text-2xl font-extrabold text-[#20261D] mt-1 font-display">
           Record Completed Offline Sale
         </h2>
-        <p className="text-xs text-slate-500 mt-1">
+        <p className="text-xs text-[#646A5E] mt-1">
           Record physical stock delivery and compute junior commission strictly by current tier percentage.
         </p>
       </div>
 
       {saleRecordedSuccess && (
-        <div className="p-4 bg-emerald-50 border border-emerald-300 rounded-2xl text-emerald-900 text-xs flex items-center gap-3 animate-in fade-in duration-200 shadow-sm">
-          <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
+        <div className="p-4 bg-[#EDF2E8] border border-[#C8D4B8] rounded-2xl text-[#2A331E] text-xs flex items-center gap-3 animate-in fade-in duration-200 shadow-sm">
+          <CheckCircle2 className="w-5 h-5 text-[#7D8D64] shrink-0" />
           <div>
             <strong className="block font-bold">Transaction Successfully Recorded to Master Ledger!</strong>
             <span>Commission of ₹{calculation.calculatedJuniorCommission.toFixed(2)} credited to {activeSalesman.name}'s performance ledger.</span>
@@ -105,24 +107,24 @@ export const SalesEntryView: React.FC = () => {
       )}
 
       {/* Form & Real-Time Calculation Preview */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
         {/* Form Column */}
-        <div className="lg:col-span-7 bg-white p-6 sm:p-7 rounded-2xl border border-slate-200/90 shadow-2xs space-y-5">
-          <h3 className="text-sm font-bold text-slate-900 uppercase font-mono tracking-wider border-b border-slate-100 pb-3">
+        <div className="lg:col-span-7 bg-white p-5 sm:p-7 rounded-2xl border border-[#E8E0D5] shadow-2xs space-y-5">
+          <h3 className="text-sm font-bold text-[#20261D] uppercase font-mono tracking-wider border-b border-[#E8E0D5] pb-3">
             Sale Transaction Details
           </h3>
 
           <form onSubmit={handleSubmitSale} className="space-y-4 text-xs font-mono">
             {/* Salesman Selection */}
             <div>
-              <label className="block text-slate-700 font-bold uppercase mb-1">
+              <label className="block text-[#20261D] font-bold uppercase mb-1">
                 FMCG Route Junior:
               </label>
               <select
                 value={selectedSalesmanId}
                 onChange={(e) => setSelectedSalesmanId(e.target.value)}
                 disabled={isJunior} // Junior can only record their own
-                className="w-full p-2.5 border border-slate-200 rounded-xl bg-slate-50 font-bold text-slate-900"
+                className="w-full p-3 border border-[#E8E0D5] rounded-xl bg-[#FAF7F2] font-bold text-[#20261D] focus:ring-2 focus:ring-[#7D8D64]/30"
               >
                 {salesmen.map((s) => (
                   <option key={s.id} value={s.id}>
@@ -134,13 +136,13 @@ export const SalesEntryView: React.FC = () => {
 
             {/* Product Selection */}
             <div>
-              <label className="block text-slate-700 font-bold uppercase mb-1">
+              <label className="block text-[#20261D] font-bold uppercase mb-1">
                 Product Sourced:
               </label>
               <select
                 value={selectedProductId}
                 onChange={(e) => setSelectedProductId(e.target.value)}
-                className="w-full p-2.5 border border-slate-200 rounded-xl bg-slate-50 font-bold text-slate-900"
+                className="w-full p-3 border border-[#E8E0D5] rounded-xl bg-[#FAF7F2] font-bold text-[#20261D] focus:ring-2 focus:ring-[#7D8D64]/30"
               >
                 {products.map((p) => (
                   <option key={p.id} value={p.id}>
@@ -150,10 +152,10 @@ export const SalesEntryView: React.FC = () => {
               </select>
             </div>
 
-            {/* Quantity */}
+            {/* Quantity & PIN Corridor */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-slate-700 font-bold uppercase mb-1">
+                <label className="block text-[#20261D] font-bold uppercase mb-1">
                   Quantity Delivered (Units):
                 </label>
                 <input
@@ -162,12 +164,12 @@ export const SalesEntryView: React.FC = () => {
                   required
                   value={quantity}
                   onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))}
-                  className="w-full p-2.5 border border-slate-200 rounded-xl bg-slate-50 font-bold text-slate-900"
+                  className="w-full p-3 border border-[#E8E0D5] rounded-xl bg-[#FAF7F2] font-bold text-[#20261D] focus:ring-2 focus:ring-[#7D8D64]/30"
                 />
               </div>
 
               <div>
-                <label className="block text-slate-700 font-bold uppercase mb-1">
+                <label className="block text-[#20261D] font-bold uppercase mb-1">
                   Delivery PIN Corridor:
                 </label>
                 <input
@@ -176,14 +178,14 @@ export const SalesEntryView: React.FC = () => {
                   value={areaPin}
                   onChange={(e) => setAreaPin(e.target.value)}
                   placeholder="e.g. 732123"
-                  className="w-full p-2.5 border border-slate-200 rounded-xl bg-slate-50 font-bold text-slate-900"
+                  className="w-full p-3 border border-[#E8E0D5] rounded-xl bg-[#FAF7F2] font-bold text-[#20261D] focus:ring-2 focus:ring-[#7D8D64]/30"
                 />
               </div>
             </div>
 
             {/* Store Name */}
             <div>
-              <label className="block text-slate-700 font-bold uppercase mb-1">
+              <label className="block text-[#20261D] font-bold uppercase mb-1">
                 Receiving Kirana Store Name:
               </label>
               <input
@@ -192,13 +194,13 @@ export const SalesEntryView: React.FC = () => {
                 value={customerName}
                 onChange={(e) => setCustomerName(e.target.value)}
                 placeholder="e.g. Maa Tara Kirana Store"
-                className="w-full p-2.5 border border-slate-200 rounded-xl bg-slate-50 font-bold text-slate-900"
+                className="w-full p-3 border border-[#E8E0D5] rounded-xl bg-[#FAF7F2] font-bold text-[#20261D] focus:ring-2 focus:ring-[#7D8D64]/30"
               />
             </div>
 
             <button
               type="submit"
-              className="w-full py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-md shadow-emerald-600/20 active:scale-98 flex items-center justify-center gap-2 mt-4"
+              className="w-full py-3.5 bg-[#7D8D64] hover:bg-[#6E7D56] text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-md shadow-[#7D8D64]/25 active:scale-98 flex items-center justify-center gap-2 mt-4"
             >
               <CheckCircle2 className="w-4 h-4" />
               <span>Record Offline Sale & Disburse Commission</span>
@@ -207,64 +209,64 @@ export const SalesEntryView: React.FC = () => {
         </div>
 
         {/* Live Rule 1, 4, 5 Calculation Summary */}
-        <div className="lg:col-span-5 bg-slate-900 text-white p-6 rounded-2xl border border-slate-800 shadow-xl space-y-5">
-          <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-            <span className="text-xs uppercase font-mono tracking-wider text-emerald-400 font-bold">
+        <div className="lg:col-span-5 bg-[#1C2214] text-white p-5 sm:p-6 rounded-2xl border border-[#3C472C] shadow-xl space-y-5">
+          <div className="flex items-center justify-between border-b border-[#3C472C] pb-3">
+            <span className="text-xs uppercase font-mono tracking-wider text-[#A3B489] font-bold">
               Real-Time Commission Audit
             </span>
-            <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">
+            <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#2A331E] text-[#EDF2E8] border border-[#7D8D64]/40">
               Rule 1 & 4 Enforced
             </span>
           </div>
 
           <div className="space-y-3 font-mono text-xs">
-            <div className="flex justify-between py-1 border-b border-slate-800">
-              <span className="text-slate-400">Junior Salesman:</span>
+            <div className="flex justify-between py-1 border-b border-[#3C472C]">
+              <span className="text-[#C8D4B8]">Junior Salesman:</span>
               <span className="font-bold text-white font-sans">{activeSalesman.name}</span>
             </div>
-            <div className="flex justify-between py-1 border-b border-slate-800">
-              <span className="text-slate-400">Current Assigned Level:</span>
-              <span className="font-bold text-amber-400">{levelDetails.currentLevel.name}</span>
+            <div className="flex justify-between py-1 border-b border-[#3C472C]">
+              <span className="text-[#C8D4B8]">Current Assigned Level:</span>
+              <span className="font-bold text-[#E8E0D5]">{levelDetails.currentLevel.name}</span>
             </div>
-            <div className="flex justify-between py-1 border-b border-slate-800">
-              <span className="text-slate-400">Applicable Tier Rate:</span>
-              <span className="font-bold text-emerald-400">{applicableRate}%</span>
+            <div className="flex justify-between py-1 border-b border-[#3C472C]">
+              <span className="text-[#C8D4B8]">Applicable Tier Rate:</span>
+              <span className="font-bold text-[#A3B489]">{applicableRate}%</span>
             </div>
-            <div className="flex justify-between py-1 border-b border-slate-800">
-              <span className="text-slate-400">Product & Price:</span>
-              <span className="font-bold text-white font-sans">{selectedProduct.name} (₹{selectedProduct.price})</span>
+            <div className="flex justify-between py-1 border-b border-[#3C472C]">
+              <span className="text-[#C8D4B8]">Product & Price:</span>
+              <span className="font-bold text-white font-sans truncate max-w-[180px]">{selectedProduct.name} (₹{productPrice})</span>
             </div>
-            <div className="flex justify-between py-1 border-b border-slate-800">
-              <span className="text-slate-400">Quantity:</span>
+            <div className="flex justify-between py-1 border-b border-[#3C472C]">
+              <span className="text-[#C8D4B8]">Quantity:</span>
               <span className="font-bold text-white">{quantity} units</span>
             </div>
-            <div className="flex justify-between py-1.5 border-b border-slate-800 text-sm">
-              <span className="text-slate-300 font-bold">Sale Amount:</span>
-              <span className="font-black text-emerald-400">₹{calculation.saleAmount.toLocaleString('en-IN')}</span>
+            <div className="flex justify-between py-1.5 border-b border-[#3C472C] text-sm">
+              <span className="text-[#EDF2E8] font-bold">Sale Amount:</span>
+              <span className="font-black text-[#A3B489]">₹{calculation.saleAmount.toLocaleString('en-IN')}</span>
             </div>
-            <div className="flex justify-between py-1 border-b border-slate-800">
-              <span className="text-slate-400">Max Pool Ceiling (4%):</span>
-              <span className="text-slate-400">₹{calculation.maxCommissionPoolAmount.toFixed(2)}</span>
+            <div className="flex justify-between py-1 border-b border-[#3C472C]">
+              <span className="text-[#C8D4B8]">Max Pool Ceiling (4%):</span>
+              <span className="text-[#C8D4B8]">₹{calculation.maxCommissionPoolAmount.toFixed(2)}</span>
             </div>
           </div>
 
           {/* Junior Commission Highlight */}
-          <div className="p-4 bg-slate-950 rounded-xl border border-emerald-500/40 text-center space-y-1">
-            <span className="text-[10px] uppercase font-mono tracking-wider text-emerald-300 font-bold block">
+          <div className="p-4 bg-[#2A331E] rounded-xl border border-[#7D8D64]/50 text-center space-y-1">
+            <span className="text-[10px] uppercase font-mono tracking-wider text-[#A3B489] font-bold block">
               Credited Junior Commission:
             </span>
             <div className="text-3xl font-black text-white font-display">
               ₹{calculation.calculatedJuniorCommission.toFixed(2)}
             </div>
-            <p className="text-[11px] text-slate-400 font-mono">
+            <p className="text-[11px] text-[#C8D4B8] font-mono">
               ₹{calculation.saleAmount} × {applicableRate}% = ₹{calculation.calculatedJuniorCommission.toFixed(2)}
             </p>
           </div>
 
           {/* Retained Pool Balance */}
-          <div className="p-3 bg-slate-800/80 rounded-xl border border-slate-700 text-xs flex justify-between items-center font-mono">
-            <span className="text-slate-400">Retained Business Margin:</span>
-            <span className="font-bold text-slate-200">₹{calculation.retainedBusinessCommission.toFixed(2)}</span>
+          <div className="p-3 bg-[#242C19] rounded-xl border border-[#3C472C] text-xs flex justify-between items-center font-mono">
+            <span className="text-[#C8D4B8]">Retained Business Margin:</span>
+            <span className="font-bold text-[#FAF7F2]">₹{calculation.retainedBusinessCommission.toFixed(2)}</span>
           </div>
         </div>
       </div>

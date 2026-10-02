@@ -58,28 +58,28 @@ export const CommissionCalculatorView: React.FC = () => {
   }, []);
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 text-[#20261D]">
       {/* Header */}
-      <div className="border-b border-slate-200 pb-5">
-        <div className="flex items-center gap-2 text-xs font-bold text-emerald-700 uppercase tracking-wider font-mono">
+      <div className="border-b border-[#E8E0D5] pb-5">
+        <div className="flex items-center gap-2 text-xs font-bold text-[#7D8D64] uppercase tracking-wider font-mono">
           <Calculator className="w-4 h-4" />
           <span>Core Mathematical Engine</span>
         </div>
-        <h2 className="text-2xl font-extrabold text-slate-900 mt-1 font-display">
+        <h2 className="text-2xl font-extrabold text-[#20261D] mt-1 font-display">
           Live Commission Calculator
         </h2>
-        <p className="text-xs text-slate-500 mt-1 max-w-2xl">
+        <p className="text-xs text-[#646A5E] mt-1 max-w-2xl">
           Simulate offline sales commission according to strict company rules. 4% represents the absolute maximum business pool ceiling; each junior receives strictly their applicable tier rate.
         </p>
       </div>
 
       {/* Critical Rule 1 & 5 Notice Banner */}
-      <div className="p-4 rounded-2xl bg-amber-50 border border-amber-200/90 text-xs text-amber-900 space-y-2 shadow-2xs">
-        <div className="flex items-center gap-2 font-bold text-amber-800 text-sm">
-          <AlertTriangle className="w-4 h-4 text-amber-600 shrink-0" />
+      <div className="p-4 rounded-2xl bg-[#F3EDE4] border border-[#E8E0D5] text-xs text-[#20261D] space-y-2 shadow-2xs">
+        <div className="flex items-center gap-2 font-bold text-[#3C472C] text-sm">
+          <AlertTriangle className="w-4 h-4 text-[#7D8D64] shrink-0" />
           <span>Crucial Business Rule: 4% Maximum Pool vs Applicable Junior Rate</span>
         </div>
-        <p className="leading-relaxed">
+        <p className="leading-relaxed text-[#4A5638]">
           <strong>DO NOT CALCULATE:</strong> ₹400 × 4% = ₹16 for a junior whose applicable rate is 0.50%. <br />
           <strong>CORRECT CALCULATION:</strong> ₹400 × 0.50% = <strong>₹2.00 commission</strong>. The remaining ₹14 (3.50%) stays in the retained business pool.
         </p>
@@ -88,14 +88,14 @@ export const CommissionCalculatorView: React.FC = () => {
       {/* Dual Column: Interactive Calculator + Live Result Card */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Input Form Column */}
-        <div className="lg:col-span-6 bg-white p-6 rounded-2xl border border-slate-200/90 shadow-2xs space-y-5">
-          <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider font-mono border-b border-slate-100 pb-3">
+        <div className="lg:col-span-6 bg-white p-6 rounded-2xl border border-[#E8E0D5] shadow-2xs space-y-5">
+          <h3 className="text-sm font-bold text-[#20261D] uppercase tracking-wider font-mono border-b border-[#E8E0D5] pb-3">
             Simulation Inputs
           </h3>
 
           {/* Product Selector */}
           <div>
-            <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
+            <label className="block text-xs font-bold text-[#20261D] uppercase mb-1">
               Select Product:
             </label>
             <select
@@ -105,7 +105,7 @@ export const CommissionCalculatorView: React.FC = () => {
                 const prod = products.find((p) => p.id === e.target.value);
                 if (prod) setCustomPrice(prod.price);
               }}
-              className="w-full text-xs font-medium border border-slate-200 rounded-xl p-3 bg-slate-50/60 focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition"
+              className="w-full text-xs font-medium border border-[#E8E0D5] rounded-xl p-3 bg-[#FAF7F2] focus:ring-2 focus:ring-[#7D8D64]/30 focus:border-[#7D8D64] transition"
             >
               {products.map((p) => (
                 <option key={p.id} value={p.id}>
@@ -118,7 +118,7 @@ export const CommissionCalculatorView: React.FC = () => {
           {/* Quantity & Unit Price */}
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
+              <label className="block text-xs font-bold text-[#20261D] uppercase mb-1">
                 Unit Price (₹):
               </label>
               <input
@@ -126,12 +126,12 @@ export const CommissionCalculatorView: React.FC = () => {
                 min={1}
                 value={price}
                 onChange={(e) => setCustomPrice(Math.max(1, parseFloat(e.target.value) || 0))}
-                className="w-full text-xs font-mono font-bold border border-slate-200 rounded-xl p-2.5 bg-slate-50/60 focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600"
+                className="w-full text-xs font-mono font-bold border border-[#E8E0D5] rounded-xl p-2.5 bg-[#FAF7F2] focus:ring-2 focus:ring-[#7D8D64]/30 focus:border-[#7D8D64]"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
+              <label className="block text-xs font-bold text-[#20261D] uppercase mb-1">
                 Quantity (Units):
               </label>
               <input
@@ -139,20 +139,20 @@ export const CommissionCalculatorView: React.FC = () => {
                 min={1}
                 value={quantity}
                 onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))}
-                className="w-full text-xs font-mono font-bold border border-slate-200 rounded-xl p-2.5 bg-slate-50/60 focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600"
+                className="w-full text-xs font-mono font-bold border border-[#E8E0D5] rounded-xl p-2.5 bg-[#FAF7F2] focus:ring-2 focus:ring-[#7D8D64]/30 focus:border-[#7D8D64]"
               />
             </div>
           </div>
 
           {/* Junior Level Selection */}
           <div>
-            <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
+            <label className="block text-xs font-bold text-[#20261D] uppercase mb-1">
               Junior Qualification Level:
             </label>
             <select
               value={selectedLevelId}
               onChange={(e) => setSelectedLevelId(e.target.value)}
-              className="w-full text-xs font-mono font-bold border border-slate-200 rounded-xl p-3 bg-slate-50/60 focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600"
+              className="w-full text-xs font-mono font-bold border border-[#E8E0D5] rounded-xl p-3 bg-[#FAF7F2] focus:ring-2 focus:ring-[#7D8D64]/30 focus:border-[#7D8D64]"
             >
               {levels.map((lvl) => (
                 <option key={lvl.id} value={lvl.id}>
@@ -160,14 +160,14 @@ export const CommissionCalculatorView: React.FC = () => {
                 </option>
               ))}
             </select>
-            <span className="text-[11px] text-slate-500 mt-1 block">
+            <span className="text-[11px] text-[#646A5E] mt-1 block">
               Applicable tier rate for {selectedLevel.name}: <strong>{selectedLevel.rate}%</strong>
             </span>
           </div>
 
           {/* Quick Preset Buttons */}
-          <div className="pt-2 border-t border-slate-100">
-            <span className="text-[11px] text-slate-500 font-semibold block mb-2">
+          <div className="pt-2 border-t border-[#E8E0D5]">
+            <span className="text-[11px] text-[#646A5E] font-semibold block mb-2">
               Quick Test Presets (Rule 4 & 9):
             </span>
             <div className="flex flex-wrap gap-2 text-[11px] font-mono">
@@ -178,7 +178,7 @@ export const CommissionCalculatorView: React.FC = () => {
                   setQuantity(1);
                   setSelectedLevelId('EXTRA');
                 }}
-                className="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-emerald-50 hover:text-emerald-700 border border-slate-200 transition"
+                className="px-2.5 py-1 rounded-lg bg-[#FAF7F2] hover:bg-[#EDF2E8] hover:text-[#3C472C] border border-[#E8E0D5] transition"
               >
                 Colgate @ ₹40 × 1 (EXTRA)
               </button>
@@ -189,7 +189,7 @@ export const CommissionCalculatorView: React.FC = () => {
                   setQuantity(10);
                   setSelectedLevelId('EXTRA');
                 }}
-                className="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-emerald-50 hover:text-emerald-700 border border-slate-200 transition"
+                className="px-2.5 py-1 rounded-lg bg-[#FAF7F2] hover:bg-[#EDF2E8] hover:text-[#3C472C] border border-[#E8E0D5] transition"
               >
                 Colgate @ ₹40 × 10 (EXTRA)
               </button>
@@ -200,7 +200,7 @@ export const CommissionCalculatorView: React.FC = () => {
                   setQuantity(1);
                   setSelectedLevelId('L-1');
                 }}
-                className="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-emerald-50 hover:text-emerald-700 border border-slate-200 transition"
+                className="px-2.5 py-1 rounded-lg bg-[#FAF7F2] hover:bg-[#EDF2E8] hover:text-[#3C472C] border border-[#E8E0D5] transition"
               >
                 ₹3,000 × 1 (L-1 @ 0.20%)
               </button>
@@ -210,80 +210,80 @@ export const CommissionCalculatorView: React.FC = () => {
 
         {/* Live Calculation Result Card */}
         <div className="lg:col-span-6 space-y-4">
-          <div className="bg-slate-900 text-white p-6 sm:p-7 rounded-2xl border border-slate-800 shadow-xl space-y-5">
-            <div className="flex items-center justify-between border-b border-slate-800 pb-4">
-              <span className="text-xs uppercase font-mono tracking-wider text-emerald-400 font-bold">
+          <div className="bg-[#1C2214] text-white p-6 sm:p-7 rounded-2xl border border-[#3C472C] shadow-xl space-y-5">
+            <div className="flex items-center justify-between border-b border-[#3C472C] pb-4">
+              <span className="text-xs uppercase font-mono tracking-wider text-[#A3B489] font-bold">
                 Calculated Commission Breakdown
               </span>
-              <span className="text-[11px] font-mono bg-slate-800 text-slate-300 px-2 py-0.5 rounded-md border border-slate-700">
+              <span className="text-[11px] font-mono bg-[#2A331E] text-[#EDF2E8] px-2 py-0.5 rounded-md border border-[#3C472C]">
                 Formula Verified
               </span>
             </div>
 
             {/* Spec Sheet Table */}
             <div className="space-y-3 font-mono text-xs">
-              <div className="flex justify-between py-1 border-b border-slate-800">
-                <span className="text-slate-400">Product:</span>
+              <div className="flex justify-between py-1 border-b border-[#3C472C]">
+                <span className="text-[#C8D4B8]">Product:</span>
                 <span className="font-bold text-white">{selectedProduct?.name || 'Custom Item'}</span>
               </div>
-              <div className="flex justify-between py-1 border-b border-slate-800">
-                <span className="text-slate-400">Price:</span>
+              <div className="flex justify-between py-1 border-b border-[#3C472C]">
+                <span className="text-[#C8D4B8]">Price:</span>
                 <span className="font-bold text-white">₹{price}</span>
               </div>
-              <div className="flex justify-between py-1 border-b border-slate-800">
-                <span className="text-slate-400">Quantity:</span>
+              <div className="flex justify-between py-1 border-b border-[#3C472C]">
+                <span className="text-[#C8D4B8]">Quantity:</span>
                 <span className="font-bold text-white">{quantity} units</span>
               </div>
-              <div className="flex justify-between py-1.5 border-b border-slate-800 text-sm">
-                <span className="text-slate-300 font-bold">Sale Amount (Price × Qty):</span>
-                <span className="font-black text-emerald-400">₹{result.saleAmount.toLocaleString('en-IN')}</span>
+              <div className="flex justify-between py-1.5 border-b border-[#3C472C] text-sm">
+                <span className="text-[#EDF2E8] font-bold">Sale Amount (Price × Qty):</span>
+                <span className="font-black text-[#A3B489]">₹{result.saleAmount.toLocaleString('en-IN')}</span>
               </div>
-              <div className="flex justify-between py-1 border-b border-slate-800">
-                <span className="text-slate-400">Maximum Commission Pool (4%):</span>
-                <span className="text-slate-300 font-mono">₹{result.maxCommissionPoolAmount.toFixed(2)}</span>
+              <div className="flex justify-between py-1 border-b border-[#3C472C]">
+                <span className="text-[#C8D4B8]">Maximum Commission Pool (4%):</span>
+                <span className="text-[#E8E0D5] font-mono">₹{result.maxCommissionPoolAmount.toFixed(2)}</span>
               </div>
-              <div className="flex justify-between py-1 border-b border-slate-800">
-                <span className="text-slate-400">Junior Level:</span>
-                <span className="font-bold text-amber-400 uppercase">{selectedLevel.name}</span>
+              <div className="flex justify-between py-1 border-b border-[#3C472C]">
+                <span className="text-[#C8D4B8]">Junior Level:</span>
+                <span className="font-bold text-[#E8E0D5] uppercase">{selectedLevel.name}</span>
               </div>
-              <div className="flex justify-between py-1 border-b border-slate-800">
-                <span className="text-slate-400">Applicable Commission Rate:</span>
-                <span className="font-bold text-emerald-400">{applicableRate}%</span>
+              <div className="flex justify-between py-1 border-b border-[#3C472C]">
+                <span className="text-[#C8D4B8]">Applicable Commission Rate:</span>
+                <span className="font-bold text-[#A3B489]">{applicableRate}%</span>
               </div>
             </div>
 
             {/* Final Highlighted Commission Box */}
-            <div className="p-4 bg-slate-950 rounded-xl border border-emerald-500/40 text-center space-y-1">
-              <span className="text-[11px] font-mono uppercase tracking-wider text-emerald-300 font-bold block">
+            <div className="p-4 bg-[#2A331E] rounded-xl border border-[#7D8D64]/50 text-center space-y-1">
+              <span className="text-[11px] font-mono uppercase tracking-wider text-[#A3B489] font-bold block">
                 Calculated Junior Commission:
               </span>
               <div className="text-3xl font-black text-white font-display">
                 ₹{result.calculatedJuniorCommission.toFixed(2)}
               </div>
-              <p className="text-[11px] text-slate-400 font-mono">
+              <p className="text-[11px] text-[#C8D4B8] font-mono">
                 Formula: ₹{result.saleAmount} × {applicableRate}% = ₹{result.calculatedJuniorCommission.toFixed(2)}
               </p>
             </div>
 
             {/* Retained Pool Balance */}
-            <div className="p-3 bg-slate-800/60 rounded-xl border border-slate-700/80 text-xs flex justify-between items-center font-mono">
-              <span className="text-slate-400">Retained Business Pool (4% - Junior):</span>
-              <span className="font-bold text-slate-200">₹{result.retainedBusinessCommission.toFixed(2)}</span>
+            <div className="p-3 bg-[#242C19] rounded-xl border border-[#3C472C] text-xs flex justify-between items-center font-mono">
+              <span className="text-[#C8D4B8]">Retained Business Pool (4% - Junior):</span>
+              <span className="font-bold text-[#FAF7F2]">₹{result.retainedBusinessCommission.toFixed(2)}</span>
             </div>
           </div>
         </div>
       </div>
 
       {/* Validation Test Suite per Rule 9 */}
-      <div className="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-2xs space-y-4">
-        <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+      <div className="bg-white p-6 rounded-2xl border border-[#E8E0D5] shadow-2xs space-y-4">
+        <div className="flex items-center justify-between border-b border-[#E8E0D5] pb-3">
           <div className="flex items-center gap-2">
-            <CheckCircle2 className="w-5 h-5 text-emerald-600" />
-            <h3 className="text-sm font-bold text-slate-900 font-display">
+            <CheckCircle2 className="w-5 h-5 text-[#7D8D64]" />
+            <h3 className="text-sm font-bold text-[#20261D] font-display">
               Rule 9 Validation Suite (All 6 Test Cases)
             </h3>
           </div>
-          <span className="text-[11px] font-mono px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-bold">
+          <span className="text-[11px] font-mono px-2.5 py-0.5 rounded-full bg-[#EDF2E8] text-[#3C472C] font-bold border border-[#C8D4B8]">
             {validationSuite.passed ? '100% Passed (6 / 6)' : 'Failing'}
           </span>
         </div>
@@ -293,17 +293,17 @@ export const CommissionCalculatorView: React.FC = () => {
             <div
               key={idx}
               className={`p-3 rounded-xl border flex items-center justify-between ${
-                t.passed ? 'bg-emerald-50/60 border-emerald-200 text-emerald-950' : 'bg-red-50 border-red-200 text-red-950'
+                t.passed ? 'bg-[#FAF7F2] border-[#C8D4B8] text-[#20261D]' : 'bg-red-50 border-red-200 text-red-950'
               }`}
             >
               <div>
                 <span className="font-bold block">{t.description}</span>
-                <span className="text-[11px] text-slate-500">
+                <span className="text-[11px] text-[#646A5E]">
                   Expected: ₹{t.expected.toFixed(2)} • Actual: ₹{t.actual.toFixed(2)}
                 </span>
               </div>
               {t.passed ? (
-                <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
+                <CheckCircle2 className="w-5 h-5 text-[#7D8D64] shrink-0" />
               ) : (
                 <XCircle className="w-5 h-5 text-red-600 shrink-0" />
               )}

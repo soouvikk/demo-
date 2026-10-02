@@ -97,9 +97,9 @@ export const CommissionLevelsManager: React.FC = () => {
 
       {/* RBAC Notice */}
       <div className={`p-4 rounded-2xl border text-xs flex items-start gap-3 ${
-        isSuperAdmin ? 'bg-emerald-50/70 border-emerald-200 text-emerald-900' : 'bg-slate-100 border-slate-200 text-slate-700'
+        isSuperAdmin ? 'bg-[#EDF2E8] border-[#C8D4B8] text-[#2A331E]' : 'bg-[#FAF7F2] border-[#E8E0D5] text-[#20261D]'
       }`}>
-        <ShieldCheck className={`w-4 h-4 mt-0.5 shrink-0 ${isSuperAdmin ? 'text-emerald-700' : 'text-slate-500'}`} />
+        <ShieldCheck className={`w-4 h-4 mt-0.5 shrink-0 ${isSuperAdmin ? 'text-[#7D8D64]' : 'text-[#646A5E]'}`} />
         <div>
           <strong className="block font-bold">
             {isSuperAdmin
@@ -113,10 +113,10 @@ export const CommissionLevelsManager: React.FC = () => {
       </div>
 
       {/* 13-Tier Table */}
-      <div className="bg-white rounded-2xl border border-slate-200/90 shadow-2xs overflow-hidden">
+      <div className="bg-white rounded-2xl border border-[#E8E0D5] shadow-2xs overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs font-mono">
-            <thead className="bg-slate-900 text-slate-200 uppercase tracking-wider text-[11px]">
+            <thead className="bg-[#2A331E] text-[#FAF7F2] uppercase tracking-wider text-[11px]">
               <tr>
                 <th className="py-3 px-4">Tier / Level</th>
                 <th className="py-3 px-4">Qualification Amount</th>
@@ -126,44 +126,44 @@ export const CommissionLevelsManager: React.FC = () => {
                 {isSuperAdmin && <th className="py-3 px-4 text-right">Admin Action</th>}
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100">
+            <tbody className="divide-y divide-[#E8E0D5]">
               {levels.map((lvl) => {
                 const isExtra = lvl.id === 'EXTRA';
                 return (
                   <tr
                     key={lvl.id}
-                    className={`hover:bg-slate-50/80 transition-colors ${
-                      isExtra ? 'bg-amber-50/30' : ''
+                    className={`hover:bg-[#FAF7F2] transition-colors ${
+                      isExtra ? 'bg-[#FAF7F2]' : ''
                     }`}
                   >
-                    <td className="py-3.5 px-4 font-bold text-slate-900">
+                    <td className="py-3.5 px-4 font-bold text-[#20261D]">
                       <div className="flex items-center gap-2">
                         <span className={`px-2 py-0.5 rounded font-black text-xs ${
-                          isExtra ? 'bg-amber-100 text-amber-900 border border-amber-300' : 'bg-slate-100 text-slate-800'
+                          isExtra ? 'bg-[#EDF2E8] text-[#2A331E] border border-[#C8D4B8]' : 'bg-[#F0F1EF] text-[#20261D]'
                         }`}>
                           {lvl.name}
                         </span>
                         {isExtra && (
-                          <span className="text-[10px] text-amber-800 font-sans font-semibold">
+                          <span className="text-[10px] text-[#7D8D64] font-sans font-semibold">
                             (Starting Level)
                           </span>
                         )}
                       </div>
                     </td>
 
-                    <td className="py-3.5 px-4 font-bold text-slate-800">
+                    <td className="py-3.5 px-4 font-bold text-[#20261D]">
                       ₹{lvl.qualificationAmount.toLocaleString('en-IN')}
                     </td>
 
-                    <td className="py-3.5 px-4 font-black text-emerald-700">
+                    <td className="py-3.5 px-4 font-black text-[#7D8D64]">
                       {lvl.rate}%
                     </td>
 
-                    <td className="py-3.5 px-4 font-bold text-slate-900">
+                    <td className="py-3.5 px-4 font-bold text-[#20261D]">
                       ₹{lvl.expectedCommission.toFixed(2)}
                     </td>
 
-                    <td className="py-3.5 px-4 text-slate-500 font-sans text-[11px]">
+                    <td className="py-3.5 px-4 text-[#646A5E] font-sans text-[11px]">
                       {lvl.description || 'Standard volume milestone'}
                     </td>
 
@@ -171,7 +171,7 @@ export const CommissionLevelsManager: React.FC = () => {
                       <td className="py-3.5 px-4 text-right font-sans">
                         <button
                           onClick={() => startEdit(lvl)}
-                          className="px-2.5 py-1 rounded-lg border border-slate-200 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-300 text-xs font-semibold transition"
+                          className="px-2.5 py-1 rounded-lg border border-[#E8E0D5] hover:bg-[#EDF2E8] hover:text-[#2A331E] hover:border-[#7D8D64] text-xs font-semibold transition"
                         >
                           Edit Tier
                         </button>

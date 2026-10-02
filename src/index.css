@@ -4,6 +4,27 @@
   --font-serif: 'Instrument Serif', Georgia, serif;
   --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
+
+  /* User Image Color Swatch Palette */
+  --color-sage: #7D8D64;
+  --color-sage-hover: #6E7D56;
+  --color-sage-dark: #3C472C;
+  --color-sage-deep: #2A331E;
+  --color-sage-light: #EDF2E8;
+  --color-sage-border: #C8D4B8;
+
+  --color-cream: #FAF7F2;
+  --color-cream-card: #FFFFFF;
+
+  --color-sand: #E8E0D5;
+  --color-sand-light: #F4EFEB;
+  --color-sand-dark: #D4C9BA;
+
+  --color-stone: #F0F1EF;
+  --color-stone-dark: #DFE2DD;
+
+  --color-ink: #20261D;
+  --color-ink-muted: #646A5E;
 }
 
 html {
@@ -14,8 +35,8 @@ html {
 
 body {
   font-family: var(--font-sans);
-  background-color: #F8FAFC;
-  color: #0F172A;
+  background-color: #FAF7F2;
+  color: #20261D;
 }
 
 .font-serif {
@@ -31,7 +52,7 @@ body {
   font-family: var(--font-mono);
 }
 
-/* Custom Authentic Trade House Accents */
+/* Custom Authentic Trade House Accents with Image Swatch Colors */
 .trade-stamp {
   font-family: var(--font-mono);
   text-transform: uppercase;
@@ -42,22 +63,21 @@ body {
 }
 
 .trade-border {
-  border-color: #E2DDD0;
+  border-color: #E8E0D5;
 }
 
 .trade-card {
   background-color: #FFFFFF;
-  border: 1px solid #E2DDD0;
-  box-shadow: 0 1px 3px 0 rgba(25, 32, 28, 0.04), 0 1px 2px -1px rgba(25, 32, 28, 0.04);
+  border: 1px solid #E8E0D5;
+  box-shadow: 0 1px 3px 0 rgba(42, 51, 30, 0.04), 0 1px 2px -1px rgba(42, 51, 30, 0.04);
 }
 
 .trade-card:hover {
-  border-color: #CBD5CD;
-  box-shadow: 0 10px 25px -5px rgba(25, 32, 28, 0.08), 0 8px 10px -6px rgba(25, 32, 28, 0.04);
+  border-color: #7D8D64;
+  box-shadow: 0 10px 25px -5px rgba(42, 51, 30, 0.08), 0 8px 10px -6px rgba(42, 51, 30, 0.04);
 }
 
 .trade-grid-bg {
-  background-image: radial-gradient(#1E4D38 0.75px, transparent 0.75px);
+  background-image: radial-gradient(#7D8D64 0.75px, transparent 0.75px);
   background-size: 20px 20px;
 }
-

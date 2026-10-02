@@ -11,16 +11,22 @@ import { ContactView } from './components/public/ContactView';
 import { InterestedModal } from './components/public/InterestedModal';
 import { ProductDetailModal } from './components/public/ProductDetailModal';
 import { AdminLayoutShell } from './components/admin/AdminLayoutShell';
+import { MobileBottomBar } from './components/common/MobileBottomBar';
 
 const MainLayout: React.FC = () => {
   const { mode, activePublicPage } = useApp();
 
   if (mode === 'admin') {
-    return <AdminLayoutShell />;
+    return (
+      <>
+        <AdminLayoutShell />
+        <MobileBottomBar />
+      </>
+    );
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900 font-sans selection:bg-emerald-500 selection:text-white">
+    <div className="min-h-screen flex flex-col bg-[#FAF7F2] text-[#20261D] font-sans selection:bg-[#7D8D64] selection:text-white pb-16 md:pb-0">
       {/* Navigation Header */}
       <Navbar />
 
@@ -35,6 +41,9 @@ const MainLayout: React.FC = () => {
 
       {/* Public Footer */}
       <Footer />
+
+      {/* Mobile Sticky Bottom Navigation */}
+      <MobileBottomBar />
 
       {/* Global Modals */}
       <InterestedModal />

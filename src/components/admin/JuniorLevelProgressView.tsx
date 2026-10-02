@@ -42,30 +42,30 @@ export const JuniorLevelProgressView: React.FC = () => {
   }, [effectiveSales, levels]);
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 text-[#20261D]">
       {/* Header */}
-      <div className="border-b border-slate-200 pb-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="border-b border-[#E8E0D5] pb-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2 text-xs font-bold text-emerald-700 uppercase tracking-wider font-mono">
+          <div className="flex items-center gap-2 text-xs font-bold text-[#7D8D64] uppercase tracking-wider font-mono">
             <TrendingUp className="w-4 h-4" />
             <span>Rule 8 — Junior Level Progress Tracking</span>
           </div>
-          <h2 className="text-2xl font-extrabold text-slate-900 mt-1 font-display">
+          <h2 className="text-2xl font-extrabold text-[#20261D] mt-1 font-display">
             Level Progress & Qualification Tracker
           </h2>
-          <p className="text-xs text-slate-500 mt-1">
+          <p className="text-xs text-[#646A5E] mt-1">
             Real-time milestone tracking for regional juniors from entry Extra level (₹1,000 @ 0.50%) up to Master L-12.
           </p>
         </div>
 
         {/* Salesman Switcher for testing */}
         <div className="flex items-center gap-2 text-xs font-mono">
-          <span className="text-slate-500">Inspecting Junior:</span>
+          <span className="text-[#646A5E]">Inspecting Junior:</span>
           <select
             value={selectedSalesmanId}
             onChange={(e) => setSelectedSalesmanId(e.target.value)}
             disabled={isJunior} // Junior can only inspect themselves
-            className="border border-slate-200 rounded-xl px-3 py-2 bg-white text-slate-800 font-bold focus:ring-2 focus:ring-emerald-500/20"
+            className="border border-[#E8E0D5] rounded-xl px-3 py-2 bg-white text-[#20261D] font-bold focus:ring-2 focus:ring-[#7D8D64]/30"
           >
             {salesmen.map((s) => (
               <option key={s.id} value={s.id}>
@@ -77,16 +77,16 @@ export const JuniorLevelProgressView: React.FC = () => {
       </div>
 
       {/* Simulator Test Bar (Pre-filled with Rule 8 example: ₹700) */}
-      <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-2xs flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div className="p-4 rounded-2xl bg-white border border-[#E8E0D5] shadow-2xs flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center font-bold">
+          <div className="w-9 h-9 rounded-xl bg-[#EDF2E8] text-[#3C472C] flex items-center justify-center font-bold">
             ₹
           </div>
           <div>
-            <h4 className="text-xs font-bold text-slate-900">
+            <h4 className="text-xs font-bold text-[#20261D]">
               Test Sales Simulator (Rule 8 Example Mode)
             </h4>
-            <p className="text-[11px] text-slate-500">
+            <p className="text-[11px] text-[#646A5E]">
               Enter any sales volume to see instant level evaluation and progress percentage.
             </p>
           </div>
@@ -99,17 +99,17 @@ export const JuniorLevelProgressView: React.FC = () => {
             value={effectiveSales}
             onChange={(e) => setOverrideSales(Math.max(0, parseFloat(e.target.value) || 0))}
             placeholder="Enter sales amount"
-            className="w-32 px-3 py-1.5 text-xs font-mono font-bold border border-slate-200 rounded-xl bg-slate-50"
+            className="w-32 px-3 py-1.5 text-xs font-mono font-bold border border-[#E8E0D5] rounded-xl bg-[#FAF7F2]"
           />
           <button
             onClick={() => setOverrideSales(700)}
-            className="px-2.5 py-1.5 rounded-lg bg-emerald-50 text-emerald-800 hover:bg-emerald-100 font-mono text-[11px] font-bold border border-emerald-200 transition"
+            className="px-2.5 py-1.5 rounded-lg bg-[#EDF2E8] text-[#3C472C] hover:bg-[#FAF7F2] font-mono text-[11px] font-bold border border-[#C8D4B8] transition"
           >
             Reset to ₹700 (Example)
           </button>
           <button
             onClick={() => setOverrideSales(null)}
-            className="px-2.5 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-mono text-[11px] transition"
+            className="px-2.5 py-1.5 rounded-lg bg-[#F0F1EF] hover:bg-[#FAF7F2] text-[#20261D] font-mono text-[11px] border border-[#E8E0D5] transition"
           >
             Use Actual Sales (₹{actualSales})
           </button>
@@ -117,34 +117,34 @@ export const JuniorLevelProgressView: React.FC = () => {
       </div>
 
       {/* Primary Level Progress Metric Dashboard (Exact Rule 8 Layout) */}
-      <div className="bg-gradient-to-br from-slate-950 via-slate-900 to-emerald-950 text-white p-6 sm:p-8 rounded-3xl shadow-xl border border-slate-800 space-y-6">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-5">
+      <div className="bg-gradient-to-br from-[#2A331E] via-[#222918] to-[#1A2113] text-white p-6 sm:p-8 rounded-3xl shadow-xl border border-[#3C472C] space-y-6">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#3C472C] pb-5">
           <div className="flex items-center gap-3.5">
             <img
               src={activeSalesman.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=160&q=80'}
               alt={activeSalesman.name}
-              className="w-14 h-14 rounded-2xl object-cover border-2 border-emerald-400"
+              className="w-14 h-14 rounded-2xl object-cover border-2 border-[#7D8D64]"
             />
             <div>
               <div className="flex items-center gap-2">
                 <span className="font-bold text-lg text-white font-display">
                   {activeSalesman.name}
                 </span>
-                <span className="text-[10px] font-mono uppercase px-2 py-0.5 rounded-full bg-emerald-950 text-emerald-300 border border-emerald-800 font-bold">
+                <span className="text-[10px] font-mono uppercase px-2 py-0.5 rounded-full bg-[#3C472C] text-[#EDF2E8] border border-[#7D8D64]/50 font-bold">
                   {progressDetails.currentLevel.name} Status
                 </span>
               </div>
-              <p className="text-xs text-slate-400 mt-0.5">
-                Route Jurisdiction: <span className="text-emerald-300 font-mono">PIN {activeSalesman.assignedAreas.join(', ')}</span>
+              <p className="text-xs text-[#C8D4B8] mt-0.5">
+                Route Jurisdiction: <span className="text-[#A3B489] font-mono">PIN {activeSalesman.assignedAreas.join(', ')}</span>
               </p>
             </div>
           </div>
 
           <div className="text-right">
-            <span className="text-[11px] uppercase tracking-wider text-slate-400 font-mono block">
+            <span className="text-[11px] uppercase tracking-wider text-[#C8D4B8] font-mono block">
               Applicable Rate:
             </span>
-            <span className="text-2xl font-black text-emerald-400 font-display">
+            <span className="text-2xl font-black text-[#A3B489] font-display">
               {progressDetails.currentCommissionRate}%
             </span>
           </div>
@@ -152,44 +152,44 @@ export const JuniorLevelProgressView: React.FC = () => {
 
         {/* 6 Core Rule 8 Metrics Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 text-xs font-mono">
-          <div className="p-3.5 bg-slate-900/90 rounded-2xl border border-slate-800 space-y-1">
-            <span className="text-[10px] text-slate-400 uppercase tracking-wider block">Current Level</span>
-            <p className="text-base font-black text-amber-400">
+          <div className="p-3.5 bg-[#1C2214] rounded-2xl border border-[#3C472C] space-y-1">
+            <span className="text-[10px] text-[#C8D4B8] uppercase tracking-wider block">Current Level</span>
+            <p className="text-base font-black text-[#A3B489]">
               {progressDetails.currentLevel.name}
             </p>
           </div>
 
-          <div className="p-3.5 bg-slate-900/90 rounded-2xl border border-slate-800 space-y-1">
-            <span className="text-[10px] text-slate-400 uppercase tracking-wider block">Current Sales</span>
+          <div className="p-3.5 bg-[#1C2214] rounded-2xl border border-[#3C472C] space-y-1">
+            <span className="text-[10px] text-[#C8D4B8] uppercase tracking-wider block">Current Sales</span>
             <p className="text-base font-black text-white">
               ₹{effectiveSales.toLocaleString('en-IN')}
             </p>
           </div>
 
-          <div className="p-3.5 bg-slate-900/90 rounded-2xl border border-slate-800 space-y-1">
-            <span className="text-[10px] text-slate-400 uppercase tracking-wider block">Commission Rate</span>
-            <p className="text-base font-black text-emerald-400">
+          <div className="p-3.5 bg-[#1C2214] rounded-2xl border border-[#3C472C] space-y-1">
+            <span className="text-[10px] text-[#C8D4B8] uppercase tracking-wider block">Commission Rate</span>
+            <p className="text-base font-black text-[#A3B489]">
               {progressDetails.currentCommissionRate}%
             </p>
           </div>
 
-          <div className="p-3.5 bg-slate-900/90 rounded-2xl border border-slate-800 space-y-1">
-            <span className="text-[10px] text-slate-400 uppercase tracking-wider block">Target Milestone</span>
+          <div className="p-3.5 bg-[#1C2214] rounded-2xl border border-[#3C472C] space-y-1">
+            <span className="text-[10px] text-[#C8D4B8] uppercase tracking-wider block">Target Milestone</span>
             <p className="text-base font-black text-white">
               ₹{progressDetails.currentQualificationTarget.toLocaleString('en-IN')}
             </p>
           </div>
 
-          <div className="p-3.5 bg-slate-900/90 rounded-2xl border border-slate-800 space-y-1">
-            <span className="text-[10px] text-slate-400 uppercase tracking-wider block">Progress</span>
-            <p className="text-base font-black text-emerald-400">
+          <div className="p-3.5 bg-[#1C2214] rounded-2xl border border-[#3C472C] space-y-1">
+            <span className="text-[10px] text-[#C8D4B8] uppercase tracking-wider block">Progress</span>
+            <p className="text-base font-black text-[#A3B489]">
               {progressDetails.progressPercent}%
             </p>
           </div>
 
-          <div className="p-3.5 bg-slate-900/90 rounded-2xl border border-slate-800 space-y-1">
-            <span className="text-[10px] text-slate-400 uppercase tracking-wider block">Remaining</span>
-            <p className="text-base font-black text-amber-400">
+          <div className="p-3.5 bg-[#1C2214] rounded-2xl border border-[#3C472C] space-y-1">
+            <span className="text-[10px] text-[#C8D4B8] uppercase tracking-wider block">Remaining</span>
+            <p className="text-base font-black text-[#FAF7F2]">
               ₹{progressDetails.remainingAmount.toLocaleString('en-IN')}
             </p>
           </div>
@@ -198,22 +198,22 @@ export const JuniorLevelProgressView: React.FC = () => {
         {/* Visual Progress Bar */}
         <div className="space-y-2 pt-2">
           <div className="flex justify-between text-xs font-mono">
-            <span className="text-slate-300">
+            <span className="text-[#E8E0D5]">
               Advancement to {progressDetails.nextLevel ? progressDetails.nextLevel.name : 'Master L-12'}:
             </span>
-            <span className="font-bold text-emerald-400">
+            <span className="font-bold text-[#A3B489]">
               {progressDetails.progressPercent}% achieved
             </span>
           </div>
 
-          <div className="w-full bg-slate-800 rounded-full h-3 overflow-hidden p-0.5 border border-slate-700">
+          <div className="w-full bg-[#1C2214] rounded-full h-3 overflow-hidden p-0.5 border border-[#3C472C]">
             <div
-              className="bg-gradient-to-r from-emerald-500 to-teal-400 h-full rounded-full transition-all duration-500"
+              className="bg-gradient-to-r from-[#7D8D64] to-[#A3B489] h-full rounded-full transition-all duration-500"
               style={{ width: `${progressDetails.progressPercent}%` }}
             />
           </div>
 
-          <div className="flex justify-between text-[11px] text-slate-400 font-mono pt-1">
+          <div className="flex justify-between text-[11px] text-[#C8D4B8] font-mono pt-1">
             <span>Current: ₹{effectiveSales.toLocaleString('en-IN')}</span>
             <span>
               Target: ₹{progressDetails.currentQualificationTarget.toLocaleString('en-IN')} (₹{progressDetails.remainingAmount.toLocaleString('en-IN')} needed)
@@ -223,17 +223,17 @@ export const JuniorLevelProgressView: React.FC = () => {
       </div>
 
       {/* 13-Tier Visual Roadmap */}
-      <div className="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-2xs space-y-4">
-        <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+      <div className="bg-white p-6 rounded-2xl border border-[#E8E0D5] shadow-2xs space-y-4">
+        <div className="flex items-center justify-between border-b border-[#E8E0D5] pb-3">
           <div>
-            <h3 className="text-sm font-bold text-slate-900 font-display">
+            <h3 className="text-sm font-bold text-[#20261D] font-display">
               13-Tier Career Qualification Ladder
             </h3>
-            <p className="text-xs text-slate-500">
+            <p className="text-xs text-[#646A5E]">
               Every junior begins at Extra (₹1,000 @ 0.50%) and progresses up to L-12 as sales volume expands.
             </p>
           </div>
-          <span className="text-xs font-mono font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">
+          <span className="text-xs font-mono font-bold text-[#3C472C] bg-[#EDF2E8] px-2.5 py-1 rounded-full border border-[#C8D4B8]">
             Current: {progressDetails.currentLevel.name}
           </span>
         </div>
@@ -248,22 +248,22 @@ export const JuniorLevelProgressView: React.FC = () => {
                 key={lvl.id}
                 className={`p-3.5 rounded-xl border transition-all ${
                   isCurrent
-                    ? 'bg-emerald-50 border-emerald-400 ring-2 ring-emerald-500/20'
+                    ? 'bg-[#EDF2E8] border-[#7D8D64] ring-2 ring-[#7D8D64]/30'
                     : isAchieved
-                    ? 'bg-slate-50 border-slate-300 text-slate-800'
-                    : 'bg-white border-slate-200 text-slate-400 opacity-75'
+                    ? 'bg-[#FAF7F2] border-[#E8E0D5] text-[#20261D]'
+                    : 'bg-white border-[#E8E0D5] text-[#646A5E] opacity-75'
                 }`}
               >
                 <div className="flex items-center justify-between mb-1.5">
-                  <span className={`font-black ${isCurrent ? 'text-emerald-800' : 'text-slate-800'}`}>
+                  <span className={`font-black ${isCurrent ? 'text-[#2A331E]' : 'text-[#20261D]'}`}>
                     {lvl.name}
                   </span>
                   <span className={`text-[10px] font-bold px-1.5 py-0.2 rounded ${
                     isCurrent
-                      ? 'bg-emerald-600 text-white'
+                      ? 'bg-[#7D8D64] text-white'
                       : isAchieved
-                      ? 'bg-slate-200 text-slate-700'
-                      : 'bg-slate-100 text-slate-400'
+                      ? 'bg-[#E8E0D5] text-[#20261D]'
+                      : 'bg-[#F0F1EF] text-[#646A5E]'
                   }`}>
                     {lvl.rate}% Rate
                   </span>
@@ -275,8 +275,8 @@ export const JuniorLevelProgressView: React.FC = () => {
                 </div>
 
                 {isCurrent && (
-                  <div className="mt-2 text-[10px] font-bold text-emerald-700 flex items-center gap-1">
-                    <CheckCircle2 className="w-3.5 h-3.5" />
+                  <div className="mt-2 text-[10px] font-bold text-[#3C472C] flex items-center gap-1">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#7D8D64]" />
                     <span>Active Assigned Tier</span>
                   </div>
                 )}

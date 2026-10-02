@@ -63,20 +63,18 @@ export const InterestedModal: React.FC = () => {
   };
 
   const handleOpenWhatsApp = () => {
-    const targetSalesman = matchedSalesman;
+    const targetSalesman = matchedSalesman || findSalesmanByPin(pin, salesmen);
+
     createLead({
-      customerName: customerName.trim() || 'Kirana Store Inquirer',
-      customerPhone: undefined,
-      productId: selectedProductForInterest.id,
       productName: selectedProductForInterest.name,
+      productId: selectedProductForInterest.id,
       productPrice: selectedProductForInterest.price,
-      productImage: selectedProductForInterest.image,
+      customerName: customerName || undefined,
       areaPin: pin || undefined,
-      assignedSalesmanId: targetSalesman ? targetSalesman.id : undefined,
-      assignedSalesmanName: targetSalesman ? targetSalesman.name : undefined,
-      assignedSalesmanPhone: targetSalesman ? targetSalesman.phone : undefined,
       status: 'NEW',
-      notes: `Inquiry via showcase CTA. Requested carton volume: ${quantity} units.`,
+      assignedSalesmanId: targetSalesman?.id,
+      assignedSalesmanName: targetSalesman?.name,
+      notes: `Inquiry submitted via Web Showcase for ${quantity} units.`,
     });
 
     const message = buildWhatsAppMessage({
@@ -89,62 +87,65 @@ export const InterestedModal: React.FC = () => {
 
     // Exact required Click-to-Chat URL with demo number: 917365980930
     const url = `https://wa.me/917365980930?text=${encodeURIComponent(message)}`;
-
     window.open(url, '_blank');
   };
 
   const samplePins = ['732123 (Rahul)', '732101 (Amit)', '732125 (Suman)', '732142 (Priya)'];
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 transition-all duration-300">
-      <div className="relative bg-white rounded-2xl max-w-lg w-full shadow-2xl border border-slate-100 overflow-hidden transform transition-all duration-200 scale-100">
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-[#2A331E]/60 backdrop-blur-xs flex items-end sm:items-center justify-center p-0 sm:p-4 transition-all duration-300">
+      <div className="relative bg-white rounded-t-3xl sm:rounded-2xl max-w-lg w-full max-h-[92vh] overflow-y-auto shadow-2xl border border-[#E8E0D5] transform transition-all duration-200">
+        
+        {/* Mobile Pull Indicator */}
+        <div className="w-12 h-1.5 bg-[#E8E0D5] rounded-full mx-auto my-2.5 sm:hidden" />
+
         {/* Modal Header */}
-        <div className="bg-gradient-to-r from-emerald-800 via-emerald-700 to-teal-800 px-6 py-5 text-white flex items-center justify-between">
+        <div className="bg-gradient-to-r from-[#2A331E] via-[#3C472C] to-[#2A331E] px-5 sm:px-6 py-4 sm:py-5 text-white flex items-center justify-between border-b border-[#3C472C]">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20 shadow-inner">
-              <MessageCircle className="w-5 h-5 text-emerald-200" />
+              <MessageCircle className="w-5 h-5 text-[#A3B489]" />
             </div>
             <div>
-              <span className="text-[10px] font-mono uppercase tracking-widest text-emerald-200 font-semibold block">
+              <span className="text-[10px] font-mono uppercase tracking-widest text-[#C8D4B8] font-semibold block">
                 DIRECT SALES LEAD DESK
               </span>
-              <h3 className="font-display font-bold text-lg text-white">
+              <h3 className="font-display font-bold text-base sm:text-lg text-white">
                 Connect via WhatsApp
               </h3>
             </div>
           </div>
           <button
             onClick={closeInterestModal}
-            className="p-1.5 rounded-lg text-emerald-200 hover:text-white hover:bg-white/10 transition-colors"
+            className="p-1.5 rounded-lg text-[#C8D4B8] hover:text-white hover:bg-white/10 transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Modal Body */}
-        <div className="p-6 space-y-5">
+        <div className="p-4 sm:p-6 space-y-4 sm:space-y-5 text-[#20261D]">
           {/* Selected Product Manifest */}
-          <div className="flex items-center gap-4 p-4 rounded-xl bg-slate-50 border border-slate-200/80 hover:border-emerald-300 transition-colors">
+          <div className="flex items-center gap-3.5 p-3.5 rounded-xl bg-[#FAF7F2] border border-[#E8E0D5] hover:border-[#7D8D64] transition-colors">
             <img
               src={selectedProductForInterest.image}
               alt={selectedProductForInterest.name}
-              className="w-16 h-16 rounded-lg object-cover border border-slate-200 shadow-xs shrink-0"
+              className="w-16 h-16 rounded-xl object-cover border border-[#E8E0D5] shadow-xs shrink-0"
             />
             <div className="flex-1 min-w-0">
-              <span className="text-[10px] font-bold text-emerald-700 uppercase tracking-wider block">
+              <span className="text-[10px] font-bold text-[#7D8D64] uppercase tracking-wider block">
                 {selectedProductForInterest.brand}
               </span>
-              <h4 className="font-display text-sm font-bold text-slate-900 truncate">
+              <h4 className="font-display text-sm font-bold text-[#20261D] truncate">
                 {selectedProductForInterest.name}
               </h4>
               <div className="flex items-baseline gap-2 mt-1">
-                <span className="font-bold text-base text-slate-900">
+                <span className="font-bold text-base text-[#20261D]">
                   ₹{selectedProductForInterest.price}
                 </span>
-                <span className="text-xs text-slate-400 line-through">
+                <span className="text-xs text-[#646A5E] line-through">
                   ₹{selectedProductForInterest.mrp}
                 </span>
-                <span className="text-xs font-semibold text-emerald-600 ml-auto bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-100">
+                <span className="text-xs font-semibold text-[#3C472C] ml-auto bg-[#EDF2E8] px-2 py-0.5 rounded-full border border-[#C8D4B8]">
                   {selectedProductForInterest.packSize}
                 </span>
               </div>
@@ -152,44 +153,44 @@ export const InterestedModal: React.FC = () => {
           </div>
 
           {/* Instruction to Customer per specification */}
-          <div className="p-3.5 rounded-xl bg-amber-50/90 border border-amber-200 text-xs text-amber-900 space-y-1">
-            <strong className="block text-[11px] font-bold text-amber-800 uppercase tracking-wide">
+          <div className="p-3.5 rounded-xl bg-[#FAF7F2] border border-[#E8E0D5] text-xs text-[#20261D] space-y-1">
+            <strong className="block text-[11px] font-bold text-[#3C472C] uppercase tracking-wide">
               Next Step on WhatsApp:
             </strong>
-            <p className="font-medium text-amber-950">
+            <p className="font-medium text-[#20261D]">
               &ldquo;Please send your PIN/area on WhatsApp so we can connect you with the nearest salesman.&rdquo;
             </p>
           </div>
 
           {/* Form Fields: PIN & Area */}
-          <div className="space-y-4">
+          <div className="space-y-3.5">
             <div>
-              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-bold text-[#20261D] uppercase tracking-wider mb-1.5">
                 Delivery Postal PIN Code
               </label>
               <div className="flex gap-2">
                 <div className="relative flex-1">
-                  <MapPin className="absolute left-3.5 top-3 w-4 h-4 text-slate-400" />
+                  <MapPin className="absolute left-3.5 top-3 w-4 h-4 text-[#7D8D64]" />
                   <input
                     type="text"
                     value={pin}
                     onChange={handlePinChange}
                     placeholder="Enter 6-digit PIN (e.g. 732123)"
                     maxLength={6}
-                    className="w-full pl-10 pr-3 py-2.5 text-sm font-mono border border-slate-200 rounded-xl focus:outline-hidden focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 bg-white shadow-2xs transition"
+                    className="w-full pl-10 pr-3 py-2.5 text-sm font-mono border border-[#E8E0D5] rounded-xl focus:outline-hidden focus:ring-2 focus:ring-[#7D8D64]/30 focus:border-[#7D8D64] bg-[#FAF7F2] transition"
                   />
                 </div>
                 <button
                   type="button"
                   onClick={handleCheckArea}
-                  className="px-4 py-2.5 bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold rounded-xl shadow-xs transition"
+                  className="px-4 py-2.5 bg-[#2A331E] hover:bg-[#3C472C] text-white text-xs font-semibold rounded-xl shadow-xs transition shrink-0"
                 >
                   Verify Area
                 </button>
               </div>
 
               {/* Sample PIN shortcuts */}
-              <div className="flex items-center gap-1.5 mt-2 flex-wrap text-xs text-slate-500">
+              <div className="flex items-center gap-1.5 mt-2 flex-wrap text-xs text-[#646A5E]">
                 <span className="text-[11px]">Quick Samples:</span>
                 {samplePins.map((item) => {
                   const rawPin = item.split(' ')[0];
@@ -203,7 +204,7 @@ export const InterestedModal: React.FC = () => {
                         setMatchedSalesman(match);
                         setHasSearchedPin(true);
                       }}
-                      className="px-2 py-0.5 rounded-lg bg-slate-100 hover:bg-emerald-50 hover:text-emerald-700 text-[11px] font-mono transition border border-slate-200/60"
+                      className="px-2 py-0.5 rounded-lg bg-[#FAF7F2] hover:bg-[#EDF2E8] hover:text-[#2A331E] text-[11px] font-mono transition border border-[#E8E0D5]"
                     >
                       {item}
                     </button>
@@ -214,34 +215,34 @@ export const InterestedModal: React.FC = () => {
 
             {/* Matched Salesman Card */}
             {hasSearchedPin && (
-              <div className="p-4 rounded-xl border transition-all duration-200 bg-emerald-50/60 border-emerald-200/80">
+              <div className="p-3.5 rounded-xl border transition-all duration-200 bg-[#EDF2E8] border-[#C8D4B8]">
                 {matchedSalesman ? (
                   <div className="flex items-center gap-3.5">
                     <img
                       src={matchedSalesman.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80'}
                       alt={matchedSalesman.name}
-                      className="w-12 h-12 rounded-xl object-cover border-2 border-emerald-500 shadow-xs"
+                      className="w-12 h-12 rounded-xl object-cover border-2 border-[#7D8D64] shadow-xs"
                     />
                     <div className="flex-1">
                       <div className="flex items-center gap-2">
-                        <span className="text-sm font-bold text-slate-900">
+                        <span className="text-sm font-bold text-[#20261D]">
                           {matchedSalesman.name}
                         </span>
-                        <span className="text-[10px] uppercase px-2 py-0.5 bg-emerald-100 text-emerald-800 rounded-full font-bold">
+                        <span className="text-[10px] uppercase px-2 py-0.5 bg-[#7D8D64] text-white rounded-full font-bold">
                           Assigned Rep
                         </span>
                       </div>
-                      <p className="text-xs text-emerald-700 font-semibold flex items-center gap-1 mt-0.5 font-mono">
-                        <Phone className="w-3.5 h-3.5" />
+                      <p className="text-xs text-[#3C472C] font-semibold flex items-center gap-1 mt-0.5 font-mono">
+                        <Phone className="w-3.5 h-3.5 text-[#7D8D64]" />
                         {matchedSalesman.phone}
                       </p>
-                      <p className="text-[11px] text-slate-500 mt-0.5">
+                      <p className="text-[11px] text-[#646A5E] mt-0.5">
                         Jurisdiction: PIN {matchedSalesman.assignedAreas.join(', ')}
                       </p>
                     </div>
                   </div>
                 ) : (
-                  <div className="text-xs text-slate-600">
+                  <div className="text-xs text-[#20261D]">
                     No field junior mapped yet for PIN <strong>{pin}</strong>. You will connect directly to our <strong>Central Dispatch Desk</strong>.
                   </div>
                 )}
@@ -251,7 +252,7 @@ export const InterestedModal: React.FC = () => {
             {/* Store Name & Volume */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
               <div>
-                <label className="block text-xs font-semibold text-slate-700 mb-1">
+                <label className="block text-xs font-semibold text-[#20261D] mb-1">
                   Store / Kirana Name (Optional)
                 </label>
                 <input
@@ -259,22 +260,22 @@ export const InterestedModal: React.FC = () => {
                   value={customerName}
                   onChange={(e) => setCustomerName(e.target.value)}
                   placeholder="e.g. Maa Tara Kirana"
-                  className="w-full px-3 py-2 text-xs border border-slate-200 rounded-xl bg-white focus:outline-hidden focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition"
+                  className="w-full px-3 py-2 text-xs border border-[#E8E0D5] rounded-xl bg-[#FAF7F2] focus:outline-hidden focus:ring-2 focus:ring-[#7D8D64]/30 focus:border-[#7D8D64] transition"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-700 mb-1">
+                <label className="block text-xs font-semibold text-[#20261D] mb-1">
                   Inquiry Volume (Cartons / Packs)
                 </label>
                 <div className="relative">
-                  <Package className="absolute left-3 top-2.5 w-4 h-4 text-slate-400" />
+                  <Package className="absolute left-3 top-2.5 w-4 h-4 text-[#7D8D64]" />
                   <input
                     type="number"
                     min={1}
                     value={quantity}
                     onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))}
-                    className="w-full pl-9 pr-3 py-2 text-xs font-mono border border-slate-200 rounded-xl bg-white focus:outline-hidden focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition"
+                    className="w-full pl-9 pr-3 py-2 text-xs font-mono border border-[#E8E0D5] rounded-xl bg-[#FAF7F2] focus:outline-hidden focus:ring-2 focus:ring-[#7D8D64]/30 focus:border-[#7D8D64] transition"
                   />
                 </div>
               </div>
@@ -282,16 +283,16 @@ export const InterestedModal: React.FC = () => {
           </div>
 
           {/* Pre-formatted Message Display */}
-          <div className="p-3.5 bg-slate-50 rounded-xl border border-slate-200/80 text-xs text-slate-700 leading-relaxed">
+          <div className="p-3 bg-[#FAF7F2] rounded-xl border border-[#E8E0D5] text-xs text-[#20261D] leading-relaxed">
             <div className="flex items-center justify-between mb-1.5">
-              <span className="font-bold text-[10px] uppercase tracking-wider text-slate-500">
+              <span className="font-bold text-[10px] uppercase tracking-wider text-[#646A5E]">
                 Dynamic WhatsApp Message Preview:
               </span>
-              <span className="text-[11px] font-mono text-emerald-700 font-semibold">
+              <span className="text-[11px] font-mono text-[#7D8D64] font-semibold">
                 wa.me/917365980930
               </span>
             </div>
-            <p className="bg-white p-3 rounded-lg border border-slate-200 text-slate-800 text-xs font-sans">
+            <p className="bg-white p-3 rounded-lg border border-[#E8E0D5] text-[#20261D] text-xs font-sans">
               Hi, I'm interested in {selectedProductForInterest.name} at ₹{selectedProductForInterest.price}. Please help me with this product. I would also like to know the salesman for my area.
               {pin && `\n\n(My Area PIN is: ${pin})`}
               {customerName && `\n(Store: ${customerName})`}
@@ -299,18 +300,18 @@ export const InterestedModal: React.FC = () => {
           </div>
 
           {/* Action Trigger */}
-          <div className="pt-1 space-y-2">
+          <div className="pt-1 space-y-2 pb-2">
             <button
               onClick={handleOpenWhatsApp}
-              className="w-full py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm rounded-xl shadow-lg shadow-emerald-600/25 flex items-center justify-center gap-2 active:scale-98 transition-all duration-150"
+              className="w-full py-3.5 bg-[#7D8D64] hover:bg-[#6E7D56] text-white font-bold text-sm rounded-xl shadow-lg shadow-[#7D8D64]/30 flex items-center justify-center gap-2 active:scale-98 transition-all duration-150"
             >
               <MessageCircle className="w-5 h-5 text-white" />
-              <span>Open WhatsApp Click-to-Chat (+91 73659 80930)</span>
+              <span>Open WhatsApp Click-to-Chat</span>
               <ArrowRight className="w-4 h-4 ml-1" />
             </button>
 
-            <p className="text-center text-[11px] text-slate-500">
-              Clicking will open WhatsApp directly with <span className="font-semibold text-slate-700">+91 73659 80930</span>
+            <p className="text-center text-[11px] text-[#646A5E]">
+              Clicking will open WhatsApp directly with <strong className="text-[#20261D]">+91 73659 80930</strong>
             </p>
           </div>
         </div>
